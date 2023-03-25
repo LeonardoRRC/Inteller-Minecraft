@@ -13,15 +13,18 @@ Compatible: El script se ejecuta en sistemas Linux, y es compatible con las últ
 Para instalar el script, simplemente clona el repositorio desde GitHub y ejecuta el archivo de instalación:
 
 ```console
-> git clone https://github.com/tunombre/Minecraft-Server-Installer.git
-> cd Minecraft-Server-Installer
-> ./install.sh
+$ git clone https://github.com/tunombre/Minecraft-Server-Installer.git
+$ cd Minecraft-Server-Installer
+$ ./install.sh
 ```
 
 ## Uso:
 Para utilizar el script, simplemente ejecútalo con los siguientes comandos:
 
-./minecraft_server_installer.sh
+```console
+$ ./minecraft_server_installer.sh
+```
+
 El script guiará al usuario a través del proceso de instalación y configuración del servidor de Minecraft.
 
 ## Contribución:
