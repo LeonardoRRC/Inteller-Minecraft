@@ -1,7 +1,7 @@
 ## Minecraft Server Installer
 
 ## Descripción:
-Este proyecto proporciona un script de instalación automatizado para servidores de Minecraft, diseñado para simplificar el proceso de configuración y puesta en marcha de un servidor de Minecraft. El script se ejecuta en sistemas Linux, y se encarga de descargar y configurar automáticamente las dependencias necesarias para ejecutar un servidor de Minecraft. Además, el script ofrece opciones para personalizar el servidor, como la elección de la versión de Minecraft a utilizar, la configuración de permisos, y la instalación de plugins y mods.
+Este proyecto proporciona un script de instalación automatizado para servidores de Minecraft, diseñado para simplificar el proceso de configuración y puesta en marcha de un servidor de Minecraft. El script se ejecuta en sistemas Linux, y se encarga de descargar y configurar automáticamente las dependencias necesarias para ejecutar un servidor de Minecraft. Además, el script ofrece opciones para personalizar el servidor, como la elección de la versión de Minecraft a utilizar, etc.
 
 ## Características:
 Fácil de usar: El script se ejecuta con unos pocos comandos, y guía al usuario a través de las opciones de configuración necesarias.
