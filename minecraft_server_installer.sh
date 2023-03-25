@@ -130,10 +130,10 @@ function show_system_info {
 function show_menu {
     echo "Seleccione una opción:"
     echo "1. Instalar Java de Eclipse Temurin"
-    echo "2. Instalar software utilizando la API de Paper"
+    echo "2. Instalar software (Paper)"
     echo "3. Instalar MariaDB"
     echo "4. Instalar phpMyAdmin"
-    echo "5. Subir archivo de log a https://pteropaste.com/"
+    echo "5. Subir archivo de log a Hastebin"
     echo "6. Cerrar un puerto con UFW"
     echo "7. Ver información del sistema"
     echo "8. Salir"
