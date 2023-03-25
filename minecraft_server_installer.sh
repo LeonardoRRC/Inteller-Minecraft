@@ -1,18 +1,20 @@
 #!/bin/bash
 
-# Función para instalar Java de Eclipse Temurin
+# Función para instalar Java
 function install_java {
     # Solicita la versión de Java a instalar
-    read -p "Ingresa la versión de Java que deseas instalar (8, 11, 16, 17, 18): " version
+    read -p "Ingresa la versión de Java que deseas instalar (por ejemplo, 8, 11, 16, 17 o 18): " version
 
-    # Instala Java de Eclipse Temurin
+    # Instala Java utilizando el sistema de paquetes de apt
     apt-get update
-    apt-get install -y curl
-    curl -sL "https://github.com/adoptium/temurin$version-upstream-binaries/releases/latest/download/installer.sh" -o installer.sh
-    chmod +x installer.sh
-    ./installer.sh --verbose --confirm || true
-    rm -f installer.sh
+    apt-get install -y openjdk-${version}-jdk
+
+    # Establece las variables de entorno necesarias
+    echo "export JAVA_HOME=/usr/lib/jvm/java-${version}-openjdk-amd64" >> /etc/profile
+    echo "export PATH=\$PATH:\$JAVA_HOME/bin" >> /etc/profile
+    source /etc/profile
 }
+
 
 # Función para instalar software utilizando la API de Paper
 function install_software {
