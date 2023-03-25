@@ -14,8 +14,6 @@ Para instalar el script, simplemente clona el repositorio desde GitHub y ejecuta
 
 ```console
 $ git clone https://github.com/LeonardoRRC/Minecraft-Server-Installer
-$ cd Minecraft-Server-Installer
-$ ./install.sh
 ```
 
 ## Uso:
