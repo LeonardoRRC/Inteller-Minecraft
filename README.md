@@ -13,7 +13,7 @@ Compatible: El script se ejecuta en sistemas Linux, y es compatible con las últ
 Para instalar el script, simplemente clona el repositorio desde GitHub y ejecuta el archivo de instalación:
 
 ```console
-$ git clone https://github.com/LeonardoRRC/Minecraft-Server-Installer
+$ git clone https://github.com/LeonardoRRC/Minecraft-Server-Installer.git
 ```
 
 ## Uso:
