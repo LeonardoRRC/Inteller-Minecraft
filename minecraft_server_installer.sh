@@ -15,20 +15,27 @@ function install_java {
     source /etc/profile
 }
 
+# Función para instalar PaperMC
+function install_paper {
+    # Solicita la versión de PaperMC a instalar
+    read -p "Ingresa la versión de PaperMC que deseas instalar (por ejemplo, 1.16.5): " software_version
 
-# Función para instalar software utilizando la API de Paper
-function install_software {
-    # Solicita el nombre y la versión del software a instalar
-    read -p "Ingresa el nombre del software que deseas instalar: " software_name
-    read -p "Ingresa la versión del software que deseas instalar: " software_version
+    # Solicita la carpeta donde se descargará el archivo de PaperMC
+    read -p "Ingresa la ruta de la carpeta donde deseas descargar el archivo de PaperMC (por ejemplo, auth): " folder
 
-    # Crea la carpeta para el software
-    read -p "Ingresa el nombre de la carpeta para el software: " folder_name
-    mkdir -p "/home/$folder_name"
+    # Descarga la última build de la versión de PaperMC especificada
+    mkdir -p "/home/${folder}/papermc"
+    cd "/home/${folder}/papermc"
+    build_number=$(curl -s "https://papermc.io/api/v2/projects/paper/versions/${software_version}/" | jq '.builds[-1]' | jq '.build' | tr -d '\n')
+    curl -o "paper-${software_version}-${build_number}.jar" "https://papermc.io/api/v2/projects/paper/versions/${software_version}/builds/${build_number}/downloads/paper-${software_version}-${build_number}.jar"
 
-    # Descarga el software utilizando la API de Paper
-    curl -sL "https://papermc.io/api/v2/projects/$software_name/versions/$software_version/downloads/$software_name-$software_version.jar" -o "/home/$folder_name/$software_name.jar"
+    # Crea el script de inicio de PaperMC
+    echo "#!/bin/sh" > "/home/${folder}/start.sh"
+    echo "cd /home/${folder}/papermc" >> "/home/${folder}/start.sh"
+    echo "java -Xms${memory} -Xmx${memory} -jar paper-${software_version}-${build_number}.jar" >> "/home/${folder}/start.sh"
+    chmod +x "/home/${folder}/start.sh"
 }
+
 
 # Función para instalar MariaDB
 function install_mariadb {
@@ -143,7 +150,7 @@ function show_menu {
     read -p "Ingresa el número de la opción deseada: " choice
     case $choice in
         1) install_java ;;
-        2) install_software ;;
+        2) install_paper ;;
         3) install_mariadb ;;
         4) install_phpmyadmin ;;
         5) upload_log ;;
