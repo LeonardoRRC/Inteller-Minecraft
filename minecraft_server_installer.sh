@@ -16,19 +16,24 @@ function install_java {
 }
 
 
-# Función para instalar software utilizando la API de Paper
-function install_software {
-    # Solicita el nombre y la versión del software a instalar
-    read -p "Ingresa el nombre del software que deseas instalar: " software_name
-    read -p "Ingresa la versión del software que deseas instalar: " software_version
+# Función para instalar PaperMC
+function install_paper {
+    # Solicita la versión de PaperMC a instalar
+    read -p "Ingresa la versión de PaperMC que deseas instalar (por ejemplo, 1.16.5): " software_version
 
-    # Crea la carpeta para el software
-    read -p "Ingresa el nombre de la carpeta para el software: " folder_name
-    mkdir -p "/home/$folder_name"
+    # Descarga la última build de la versión de PaperMC especificada
+    cd /opt/papermc
+    mkdir -p "${software_version}"
+    cd "${software_version}"
+    build_number=$(curl -s "https://papermc.io/api/v2/projects/paper/versions/${software_version}/" | jq '.builds[-1]' | jq '.build' | tr -d '\n')
+    curl -o "paper-${software_version}-${build_number}.jar" "https://papermc.io/api/v2/projects/paper/versions/${software_version}/builds/${build_number}/downloads/paper-${software_version}-${build_number}.jar"
 
-    # Descarga el software utilizando la API de Paper
-    curl -sL "https://papermc.io/api/v2/projects/$software_name/versions/$software_version/downloads/$software_name-$software_version.jar" -o "/home/$folder_name/$software_name.jar"
+    # Crea el script de inicio de PaperMC
+    echo "#!/bin/sh" > start.sh
+    echo "java -Xms${memory} -Xmx${memory} -jar paper-${software_version}-${build_number}.jar" >> start.sh
+    chmod +x start.sh
 }
+
 
 # Función para instalar MariaDB
 function install_mariadb {
@@ -131,8 +136,8 @@ function show_system_info {
 # Función para mostrar el menú de opciones
 function show_menu {
     echo "Seleccione una opción:"
-    echo "1. Instalar Java de Eclipse Temurin"
-    echo "2. Instalar software (Paper)"
+    echo "1. Instalar Java"
+    echo "2. Instalar Software"
     echo "3. Instalar MariaDB"
     echo "4. Instalar phpMyAdmin"
     echo "5. Subir archivo de log a Hastebin"
@@ -143,7 +148,7 @@ function show_menu {
     read -p "Ingresa el número de la opción deseada: " choice
     case $choice in
         1) install_java ;;
-        2) install_software ;;
+        2) install_paper ;;
         3) install_mariadb ;;
         4) install_phpmyadmin ;;
         5) upload_log ;;
