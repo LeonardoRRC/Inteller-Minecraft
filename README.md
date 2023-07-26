@@ -27,3 +27,8 @@ El script guiará al usuario a través del proceso de instalación y configuraci
 
 ## Contribución:
 ¡Todas las contribuciones son bienvenidas! Si deseas contribuir al proyecto, por favor crea un fork del repositorio y envía tus cambios a través de una solicitud de extracción.
+
+## Patrocinador:
+Estas buscando un hosting para tu servidor de minecraft puedes optar por RealisticNode.
+
+![RealisticNode Hosting](https://cdn.discordapp.com/attachments/1050589296085700699/1117884866923614319/REALIS_PG1.png)
