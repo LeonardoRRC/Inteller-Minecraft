@@ -4,7 +4,6 @@ import psutil
 from print_color import print
 
 def get_system_info():
-    # Obtener información sobre la RAM
     ram = psutil.virtual_memory()
     total_ram = ram.total / (1024 ** 3)
     available_ram = ram.available / (1024 ** 3)
@@ -43,13 +42,11 @@ def download_paper():
             print(version, color='blue')
         selected_version = input("Ingrese la versión que desea descargar: ")
         if selected_version in versions:
-            # Obtener la última build disponible para la versión seleccionada
             builds_url = f"https://api.papermc.io/v2/projects/paper/versions/{selected_version}/builds"
             builds_response = requests.get(builds_url)
             if builds_response.status_code == 200:
                 builds_data = builds_response.json()
                 latest_build = builds_data["builds"][-1]["build"]
-                # Descargar el jar de la versión y build seleccionados
                 download_url = f"https://api.papermc.io/v2/projects/paper/versions/{selected_version}/builds/{latest_build}/downloads/paper-{selected_version}-{latest_build}.jar"
                 download_response = requests.get(download_url)
                 if download_response.status_code == 200:
